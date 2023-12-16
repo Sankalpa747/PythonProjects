@@ -14,7 +14,7 @@ PENNIE = 0.01
 
 def print_report(water, milk, coffee, machine_money):
     """Print the current status report of the machine."""
-    print(f"Water: {water}\nMilk: {milk}\nCoffee: {coffee}\nMoney: ${machine_money}")
+    print(f"Water: {water}ml\nMilk: {milk}ml\nCoffee: {coffee}g\nMoney: ${machine_money}")
 
 
 def check_resources(water, milk, coffee, user_choice):
@@ -46,7 +46,7 @@ def handle_coins(user_choice):
 
     coffee_cost = choice["cost"]
     if total >= coffee_cost:
-        change = total - coffee_cost
+        change = round(total - coffee_cost, 2)
         print(f"Here is ${change} dollars in change.")
         return coffee_cost
     else:
