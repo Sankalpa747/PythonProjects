@@ -18,11 +18,11 @@ for n in range(6):
     """Executes per turtle."""
     turtle = Turtle(shape="turtle")
     turtle.penup()
-    turtle.speed("fastest")
     turtle.color(colors[n])
     turtle.goto(starting_x_coordinate, starting_y_coordinate)
     turtles.append(turtle)
     starting_y_coordinate += 50
+    turtle.speed("fastest")
 
 if user_bet:
     is_race_on = True
@@ -34,7 +34,12 @@ while is_race_on:
     for turtle in turtles:
         """Execute per turtle until the race is over."""
         random_distance = random.randint(1, 10)
+        # Comment the tilt feature for faster game play
+        turtle.tilt(10)
+        turtle.tilt(-10)
         turtle.forward(random_distance)
+        turtle.tilt(-10)
+        turtle.tilt(10)
         if turtle.xcor() >= winning_x_coordinate:
             if turtle.pencolor() == user_bet:
                 print(f"You've won. The {user_bet} turtle is the winner!")
