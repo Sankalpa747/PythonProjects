@@ -10,6 +10,9 @@ DOWN_DIRECTION = 270
 LEFT_DIRECTION = 180
 RIGHT_DIRECTION = 0
 
+MAX_POSITIVE_COR = 280
+MAX_NEGATIVE_COR = -280
+
 
 class Snake:
 
@@ -65,3 +68,36 @@ class Snake:
         """Turn the snake angle 0."""
         if self.snake_head.heading() != LEFT_DIRECTION:
             self.snake_head.setheading(RIGHT_DIRECTION)
+
+    def is_collision(self):
+        """Responsible for validating whether the snake has collied with a wall or its own tail."""
+        return self.is_collision_with_wall() or self.is_collision_with_tail()
+
+    def is_collision_with_tail(self):
+        """Responsible for validating whether the snake has collied with its own tail."""
+        # Slicing the segments without the head segment and including the rest of the segments
+        segment_list = self.segments[1:]
+        for segment in segment_list:
+            """Iterate through each segment and check the positions to detect collisions."""
+            # Alternative way for achieving the same outcome
+            # if self.snake_head.distance(segment) < 10:
+            #     return True
+            if segment.position() == self.snake_head.position():
+                return True
+        return False
+
+    def is_collision_with_wall(self):
+        """Responsible for validating whether the snake has collied with a wall."""
+        x_cor = self.snake_head.xcor()
+        y_cor = self.snake_head.ycor()
+        return x_cor > MAX_POSITIVE_COR or x_cor < MAX_NEGATIVE_COR or y_cor > MAX_POSITIVE_COR or y_cor < MAX_NEGATIVE_COR
+
+    def add_segment(self):
+        """Responsible for adding new segments to the snake."""
+        # Get the last segment
+        last_segment = self.segments[-1]
+        new_segment = Turtle("square")
+        new_segment.color("white")
+        new_segment.penup()
+        new_segment.setposition(last_segment.xcor(), last_segment.ycor())
+        self.segments.append(new_segment)
