@@ -14,6 +14,7 @@ class Scoreboard(Turtle):
         """Constructor of the ScoreBoard class."""
         super().__init__()
         self.score = 0
+        self.highscore = 0
         self.hideturtle()
         self.color("white")
         self.penup()
@@ -28,10 +29,17 @@ class Scoreboard(Turtle):
     def update_scoreboard(self):
         """Responsible for displaying the score."""
         self.clear()
-        self.write(arg=f"Score: {self.score}", align=SCOREBOARD_ALIGNMENT, font=SCOREBOARD_FONT)
+        self.write(arg=f"Score: {self.score} High score: {self.highscore}", align=SCOREBOARD_ALIGNMENT, font=SCOREBOARD_FONT)
 
-    def game_over(self):
-        """Responsible for printing the game over text."""
-        self.setposition(0, 0)
-        self.color("red")
-        self.write(arg="GAME OVER", align=SCOREBOARD_ALIGNMENT, font=SCOREBOARD_FONT)
+    def reset(self):
+        """Responsible for resetting the game. Handle the score and the highscore."""
+        if self.score > self.highscore:
+            self.highscore = self.score
+        self.score = 0
+        self.update_scoreboard()
+
+    # def game_over(self):
+    #     """Responsible for printing the game over text."""
+    #     self.setposition(0, 0)
+    #     self.color("red")
+    #     self.write(arg="GAME OVER", align=SCOREBOARD_ALIGNMENT, font=SCOREBOARD_FONT)

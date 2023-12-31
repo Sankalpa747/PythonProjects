@@ -49,9 +49,10 @@ while game_is_on:
         snake.add_segment()
 
     if snake.is_collision():
-        scores.game_over()
-        game_is_on = False
-
+        #scores.game_over()
+        #game_is_on = False
+        snake.reset()
+        scores.reset()
 
 # Screen exist on click
 screen.exitonclick()

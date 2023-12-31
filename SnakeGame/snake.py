@@ -101,3 +101,12 @@ class Snake:
         new_segment.penup()
         new_segment.setposition(last_segment.xcor(), last_segment.ycor())
         self.segments.append(new_segment)
+
+    def reset(self):
+        """Responsible for clearing the snake and create the initial snake."""
+        for segment in self.segments:
+            """Loop through the segments and make them invisible."""
+            segment.hideturtle()
+        self.segments.clear()
+        self.create_initial_snake()
+        self.snake_head = self.segments[0]
