@@ -14,7 +14,7 @@ class Scoreboard(Turtle):
         """Constructor of the ScoreBoard class."""
         super().__init__()
         self.score = 0
-        self.highscore = 0
+        self.highscore = self.read_highscore()
         self.hideturtle()
         self.color("white")
         self.penup()
@@ -35,6 +35,7 @@ class Scoreboard(Turtle):
         """Responsible for resetting the game. Handle the score and the highscore."""
         if self.score > self.highscore:
             self.highscore = self.score
+            self.write_highscore(self.highscore)
         self.score = 0
         self.update_scoreboard()
 
@@ -43,3 +44,13 @@ class Scoreboard(Turtle):
     #     self.setposition(0, 0)
     #     self.color("red")
     #     self.write(arg="GAME OVER", align=SCOREBOARD_ALIGNMENT, font=SCOREBOARD_FONT)
+
+    def read_highscore(self):
+        """Responsible for reading the highscore from the file and return the integer."""
+        with open("data.txt", mode="r") as file:
+            return int(file.read())
+
+    def write_highscore(self, new_highscore):
+        """Responsible for writing the new highscore to the file."""
+        with open("data.txt", mode="w") as file:
+            file.write(str(new_highscore))
