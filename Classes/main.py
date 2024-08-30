@@ -12,7 +12,9 @@
 
 # User class
 class User:
-
+    
+    """In Python, "self" is a conventional name used for the first parameter of instance methods in a class. 
+    It refers to the instance of the class itself."""
     def __init__(self, user_id, user_name):
         """User constructor."""
         self.id = user_id
