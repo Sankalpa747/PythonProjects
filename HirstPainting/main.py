@@ -1,5 +1,5 @@
 # Imports
-import colorgram
+# import colorgram
 
 # # Attributes
 # rgb_colors = []
