@@ -44,7 +44,7 @@ while is_race_on:
             if turtle.pencolor() == user_bet:
                 print(f"You've won. The {user_bet} turtle is the winner!")
             else:
-                print(f"Try again. The {user_bet} turtle is the winner!")
+                print(f"Try again. The {turtle.pencolor()} turtle is the winner!")
             is_race_on = False
 
 # Set screen close on click
